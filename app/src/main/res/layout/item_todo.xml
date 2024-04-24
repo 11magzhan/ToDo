@@ -16,16 +16,15 @@
         android:focusable="true"
         android:orientation="horizontal">
 
-        <com.google.android.material.checkbox.MaterialCheckBox
+        <CheckBox
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:id="@+id/text_item"
-            style="@style/TextAppearance.MaterialComponents.Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -33,10 +32,9 @@
             app:layout_constraintBottom_toBottomOf="@+id/checkbox"
             app:layout_constraintEnd_toStartOf="@+id/edit_btn"
             app:layout_constraintStart_toEndOf="@id/checkbox"
-            app:layout_constraintTop_toTopOf="@id/checkbox"
-            tools:ignore="HardcodedText" />
+            app:layout_constraintTop_toTopOf="@id/checkbox" />
 
-        <androidx.constraintlayout.utils.widget.ImageFilterButton
+        <ImageButton
             android:id="@+id/edit_btn"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -46,7 +44,7 @@
             app:layout_constraintEnd_toStartOf="@+id/delete_btn"
             app:layout_constraintTop_toTopOf="@+id/delete_btn" />
 
-        <androidx.constraintlayout.utils.widget.ImageFilterButton
+        <ImageButton
             android:id="@+id/delete_btn"
             android:layout_width="48dp"
             android:layout_height="48dp"

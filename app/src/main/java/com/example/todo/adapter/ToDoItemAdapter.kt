@@ -2,8 +2,8 @@ package com.example.todo.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.todo.SharedPrefs.getColor
 import com.example.todo.data.ToDoItem
 import com.example.todo.databinding.ItemTodoBinding
 
@@ -31,14 +31,25 @@ class ToDoItemAdapter(
     }
 
     fun updateValues(newValues: List<ToDoItem>) {
-        val calculateDiff = DiffUtil.calculateDiff(ToDoItemCallback(values, newValues))
+       // val calculateDiff = DiffUtil.calculateDiff(ToDoItemCallback(values, newValues))
         values.clear()
         values.addAll(newValues)
-        calculateDiff.dispatchUpdatesTo(this)
+        notifyDataSetChanged()
+       // calculateDiff.dispatchUpdatesTo(this)
     }
 
 
     inner class ViewHolder(private val binding: ItemTodoBinding): RecyclerView.ViewHolder(binding.root) {
+        init {
+            with(binding) {
+                if (checkbox.isChecked) {
+                    textItem.setTextColor(getColor().checkedColor)
+                } else {
+                    textItem.setTextColor(getColor().uncheckedColor)
+                }
+            }
+        }
+
         fun bind(
             item: ToDoItem,
             onEditListener: (Long) -> Unit,
@@ -51,17 +62,11 @@ class ToDoItemAdapter(
             editBtn.setOnClickListener{
                 onEditListener(item.id)
             }
-            checkbox.setOnCheckedChangeListener{ buttonView, isChecked ->
+            checkbox.setOnCheckedChangeListener{ _, _ ->
                 if (checkbox.isChecked) {
-                    // todo
-                }
-            }
-        }
-
-        init {
-            with(binding) {
-                if (checkbox.isChecked) {
-                    // todo
+                    textItem.setTextColor(getColor().checkedColor)
+                } else {
+                    textItem.setTextColor(getColor().uncheckedColor)
                 }
             }
         }
